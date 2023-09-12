@@ -1,7 +1,9 @@
 import {JournalItem} from "./components/JournalItem/JournalItem";
 import {Button} from "./components/Button/Button.jsx";
+import {CardButton} from "./components/CardButton/CardButton";
 
 import './App.css'
+
 
 
 function App() {
@@ -21,7 +23,10 @@ function App() {
 
     return (
         <div className='app'>
-            <JournalItem data={data} />
+
+            <CardButton>
+                <JournalItem data={data} />
+            </CardButton>
         </div>
     )
 }
