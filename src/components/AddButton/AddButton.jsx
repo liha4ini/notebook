@@ -3,7 +3,7 @@ import {CardButton} from "../CardButton/CardButton";
 
 export const AddButton = () => {
     return (
-        <CardButton>
+        <CardButton className='journal-add'>
             Новое воспоминание
         </CardButton>
     );

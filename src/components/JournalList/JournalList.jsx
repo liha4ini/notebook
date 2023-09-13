@@ -1,9 +1,9 @@
 import './JournalList.css'
 
-export const JournalList = () => {
+export const JournalList = ({children}) => {
     return (
-        <div>
-            <div className='journal-list'>JournalList</div>
+        <div className='journal-list'>
+            {children}
         </div>
     );
 };
