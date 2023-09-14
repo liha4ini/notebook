@@ -1,13 +1,15 @@
 import {JournalItem} from "./components/JournalItem/JournalItem";
-import {Button} from "./components/Button/Button.jsx";
 import {CardButton} from "./components/CardButton/CardButton";
-
-import './App.css'
 import {LeftSide} from "./layouts/LeftSide/LeftSide";
 import {Header} from "./components/Header/Header";
 import {JournalList} from "./components/JournalList/JournalList";
 import {MainContent} from "./layouts/MainContent/MainContent";
 import {AddButton} from "./components/AddButton/AddButton";
+import {JournalForm} from "./components/JournalForm/JournalForm";
+
+import './App.css'
+import {useState} from "react";
+
 
 
 function App() {
@@ -25,30 +27,35 @@ function App() {
         }
     ]
 
+    const [dataArr, setDataArr] = useState(data)
+
+    const addNewTask = (newTask) => {
+        setDataArr(prevState => [...prevState, {
+            text: newTask.text,
+            title: newTask.title,
+            date: new Date(newTask.date)
+        }])
+    }
+
     return (
         <div className='app'>
             <LeftSide>
                 <Header/>
                 <AddButton/>
                 <JournalList>
-                    <CardButton>
-                        <JournalItem
-                            title={data[0].title}
-                            text={data[0].text}
-                            date={data[0].date}
-                        />
-                    </CardButton>
-                    <CardButton>
-                        <JournalItem
-                            title={data[1].title}
-                            text={data[1].text}
-                            date={data[1].date}
-                        />
-                    </CardButton>
+                    {dataArr.map((el,i) => (
+                        <CardButton key={i}>
+                            <JournalItem
+                                title={el.title}
+                                text={el.text}
+                                date={el.date}
+                            />
+                        </CardButton>
+                    ))}
                 </JournalList>
             </LeftSide>
             <MainContent>
-                Main
+                <JournalForm addNewTask={addNewTask} />
             </MainContent>
         </div>
     )
