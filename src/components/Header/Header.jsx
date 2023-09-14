@@ -2,8 +2,6 @@ import './Header.css'
 
 export const Header = () => {
     return (
-        <div className='header'>
-            Logo
-        </div>
+       <img className='logo' src='/logo.svg' alt='logo' />
     );
 };
