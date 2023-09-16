@@ -1,0 +1,40 @@
+.journalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.inputTitle {
+    border: none;
+    background: none;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: normal;
+    border-bottom: 1px solid #666363;
+    color: #d8d3d3;
+    width: 100%;
+}
+
+.formLabel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 100px;
+}
+
+.formRow {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.input {
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    border-bottom: 1px solid #666363;
+    color: #d8d3d3;
+    width: 100%;
+}
