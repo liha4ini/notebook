@@ -15,7 +15,7 @@ import {useEffect, useState} from "react";
 
 function App() {
     const [dataArr, setDataArr] = useState([])
-
+    console.log(dataArr)
     // const data = [
     //     {
     //         id: 1,
@@ -32,8 +32,8 @@ function App() {
     // ]
 
     useEffect(() => {
-        const data = JSON.parse(localStorage.getItem("date"))
-        // console.log(data)
+        const data = JSON.parse(localStorage.getItem("data"))
+
         if (data) {
             setDataArr(data.map(el => ({
                 ...el,
@@ -42,15 +42,19 @@ function App() {
         }
     }, [])
 
-
+    useEffect(() => {
+        if (dataArr.length) {
+            localStorage.setItem('data', JSON.stringify(dataArr))
+        }
+    }, [dataArr])
 
     const addNewTask = (newTask) => {
         setDataArr(prevState => [...prevState, {
             text: newTask.text,
             title: newTask.title,
             date: new Date(newTask.date),
-            id: Math.max(...prevState.map(i => i.id)) + 1
-            // id: prevState.length > 0 ? Math.max(...prevState.map(i => i.id)) + 1 : 1
+            // id: Math.max(...prevState.map(i => i.id)) + 1
+            id: prevState.length > 0 ? Math.max(...prevState.map(i => i.id)) + 1 : 1
         }])
     }
 
