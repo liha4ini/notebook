@@ -9,28 +9,40 @@ import {JournalForm} from "./components/JournalForm/JournalForm";
 
 import './App.css'
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 
 function App() {
+    const [dataArr, setDataArr] = useState([])
 
-    const data = [
-        {
-            id: 1,
-            title: 'Ну привет!',
-            text: 'Здесь можно писать всякое разное пока не надоест.',
-            date: new Date()
-        },
-        {
-            id: 2,
-            title: 'Ну привет еще раз, скот!!',
-            text: 'Мне уже надоело но я все еще пишу.',
-            date: new Date()
+    // const data = [
+    //     {
+    //         id: 1,
+    //         title: 'Ну привет!',
+    //         text: 'Здесь можно писать всякое разное пока не надоест.',
+    //         date: new Date()
+    //     },
+    //     {
+    //         id: 2,
+    //         title: 'Ну привет еще раз, скот!!',
+    //         text: 'Мне уже надоело но я все еще пишу.',
+    //         date: new Date()
+    //     }
+    // ]
+
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("date"))
+        // console.log(data)
+        if (data) {
+            setDataArr(data.map(el => ({
+                ...el,
+                    date: new Date(el.date)
+            })))
         }
-    ]
+    }, [])
 
-    const [dataArr, setDataArr] = useState(data)
+
 
     const addNewTask = (newTask) => {
         setDataArr(prevState => [...prevState, {
@@ -38,6 +50,7 @@ function App() {
             title: newTask.title,
             date: new Date(newTask.date),
             id: Math.max(...prevState.map(i => i.id)) + 1
+            // id: prevState.length > 0 ? Math.max(...prevState.map(i => i.id)) + 1 : 1
         }])
     }
 
